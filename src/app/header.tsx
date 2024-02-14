@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Colors } from "./theme/colors";
 import { Login } from "@mui/icons-material";
-import { Button } from "./components/Button";
+import { Button, buttonVariants } from "@/components";
 
 export const Header = () => (
   <header
@@ -29,15 +29,20 @@ export const Header = () => (
       />
     </div> */}
     <div>
-      <Button>Hello world</Button>
-      <Button>Hello world</Button>
-      <Button>Hello world</Button>
-      <Button>Hello world</Button>
+      <Button variant="ghost">Hello world</Button>
+      <Button variant="ghost">Hello world</Button>
+      <Button variant="ghost">Hello world</Button>
+      <Button variant="ghost">Hello world</Button>
     </div>
     <div>
-      <Link href={"/users/new"}>
-        <Button startIcon={<Login />}>Логин</Button>
+      <Link
+        className={buttonVariants({ variant: "ghost" })}
+        href={"/users/new"}
+      >
+        Логин
       </Link>
     </div>
   </header>
 );
+
+// startIcon={<Login />}

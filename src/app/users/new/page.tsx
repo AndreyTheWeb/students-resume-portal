@@ -1,5 +1,3 @@
-import { Button, TextField, Typography } from "@mui/material";
-// import { Button } from "@/app/components";
 import { DBClient } from "@/app/services";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
@@ -8,19 +6,33 @@ import { redirect } from "next/navigation";
 const createUserSchema = z.object({
   name: z.string(),
   email: z.string().email(),
+  password: z.string(),
 });
 
 export default function NewUser() {
   async function newUser(data: FormData) {
     "use server";
-    console.log(data);
+    // console.log(data);
     const db = DBClient.getInstance().prisma;
+
+    const email = data.get("email") as unknown as string;
+    const existingUser = await db.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (existingUser) {
+      return;
+    }
 
     const createUser = createUserSchema.parse({
       name: data.get("name"),
       email: data.get("email"),
       password: data.get("password"),
     });
+
+    console.log(createUser);
     const user = await db.user.create({
       data: createUser,
     });
@@ -49,7 +61,6 @@ export default function NewUser() {
             type="password"
             label="Пароль"
           />
-          {/* <Button>Войти на портал</Button> */}
           <Button type="submit">Войти</Button>
         </form>
         <Typography variant="body2">Еще не зарегистированы?</Typography>

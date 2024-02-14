@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ThemeRegistry from "./ThemeRegistry";
 import { Colors } from "./theme/colors";
 
 export const metadata: Metadata = {
@@ -14,13 +13,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <ThemeRegistry>
-        <body
-          className={`flex min-h-screen flex-col items-center justify-between p-8 bg-[${Colors.background}]`}
-        >
-          <div className="w-[1240px] h-full">{children}</div>
-        </body>
-      </ThemeRegistry>
+      <body
+        className={`flex min-h-screen flex-col items-center justify-between p-8 bg-[${Colors.background}]`}
+      >
+        <div className="w-[1240px] h-full">{children}</div>
+      </body>
     </html>
   );
 }

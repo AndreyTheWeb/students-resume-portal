@@ -1,5 +1,5 @@
 import { DBClient } from "@/app/services";
-import { Header } from "./header";
+import { Header } from "../components/header";
 import { Colors } from "./theme/colors";
 
 export default async function Home() {

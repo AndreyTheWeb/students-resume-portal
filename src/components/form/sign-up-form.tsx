@@ -56,7 +56,6 @@ const SignUpForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    console.log(values);
     const response = await fetch("/api/user", {
       method: "POST",
       headers: {
@@ -72,7 +71,7 @@ const SignUpForm = () => {
     });
 
     if (response.ok) {
-      router.push("/");
+      router.push("/sign-in");
     }
   };
 
@@ -161,7 +160,7 @@ const SignUpForm = () => {
         </div>
 
         <Button variant="ghost" className="w-full mt-6" type="submit">
-          Войти
+          Зарегистрироваться
         </Button>
       </form>
       <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">

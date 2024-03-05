@@ -16,11 +16,9 @@ export const Header = () => (
       <Button variant="ghost">Hello world</Button>
     </div>
     <div>
-      <Link className={buttonVariants({ variant: "ghost" })} href={"/sign-up"}>
+      <Link className={buttonVariants({ variant: "ghost" })} href={"/sign-in"}>
         Логин
       </Link>
     </div>
   </header>
 );
-
-// startIcon={<Login />}

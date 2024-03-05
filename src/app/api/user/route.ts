@@ -2,7 +2,6 @@ import { DBClient } from "@/app/services";
 import { NextResponse } from "next/server";
 import { hash } from "bcrypt";
 import * as z from "zod";
-import { Role } from "@prisma/client";
 
 const userSchema = z.object({
   name: z.string().min(1, "Поле Имя обязательное").max(100),
@@ -32,7 +31,7 @@ export async function POST(req: Request) {
     if (existingUserByEmail) {
       return NextResponse.json(
         { user: null, message: "Пользователь уже существует" },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
@@ -51,7 +50,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       { user: rest, message: "Пользователь успешно создан" },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     return NextResponse.json({ message: `Ошибка ${error}` }, { status: 500 });

@@ -71,6 +71,7 @@ const SignUpForm = () => {
     });
 
     if (response.ok) {
+      console.log(123);
       router.push("/sign-in");
     }
   };
@@ -159,7 +160,7 @@ const SignUpForm = () => {
           ></FormField>
         </div>
 
-        <Button variant="ghost" className="w-full mt-6" type="submit">
+        <Button variant="link" className="w-full mt-6" type="submit">
           Зарегистрироваться
         </Button>
       </form>

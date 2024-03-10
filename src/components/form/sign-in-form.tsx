@@ -45,9 +45,10 @@ const SignInForm = () => {
       redirect: false,
     });
 
-    if (!signInData?.ok) {
+    if (signInData?.error) {
     } else {
       router.push("/main");
+      router.refresh();
     }
   };
 
@@ -86,7 +87,7 @@ const SignInForm = () => {
             )}
           />
         </div>
-        <Button variant="ghost" className="w-full mt-6" type="submit">
+        <Button variant="link" className="w-full mt-6" type="submit">
           Войти
         </Button>
       </form>

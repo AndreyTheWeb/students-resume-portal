@@ -18,11 +18,18 @@ model User {
   role     Role   @default(USER)
 }
 
+model ResumeBody {
+  id     Int        @id @default(autoincrement())
+  text   String
+  links  String
+  post   ResumePost @relation(fields: [postId], references: [id])
+  postId Int
+}
+
 model ResumePost {
-  id       Int      @id @default(autoincrement())
+  id       Int          @id @default(autoincrement())
   status   String
-  bodyText String
-  links    String[]
+  bodyText ResumeBody[]
 }
 
 enum Role {

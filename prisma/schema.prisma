@@ -18,6 +18,13 @@ model User {
   role     Role   @default(USER)
 }
 
+model ResumePost {
+  id       Int      @id @default(autoincrement())
+  status   String
+  bodyText String
+  links    String[]
+}
+
 enum Role {
   USER
   ADMIN

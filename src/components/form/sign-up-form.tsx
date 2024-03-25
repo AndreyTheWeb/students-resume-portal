@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { useRouter } from "next/navigation";
+import { toast } from "../ui/use-toast";
 
 const FormSchema = z
   .object({
@@ -71,8 +72,17 @@ const SignUpForm = () => {
     });
 
     if (response.ok) {
-      console.log(123);
+      toast({
+        title: "Успех",
+        description: "Вы зарегистрировались",
+      });
       router.push("/sign-in");
+    } else {
+      toast({
+        title: "Ошибка",
+        description: "Что то пошло не так",
+        variant: "destructive",
+      });
     }
   };
 

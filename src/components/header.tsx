@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Colors } from "../app/theme/colors";
-import { Button, buttonVariants, UserAccountNav } from "@/components";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { buttonVariants } from "./ui";
+import { UserAccountNav } from "./user-account-nav";
 
 export const Header = async () => {
   const session = await getServerSession(authOptions);
@@ -14,10 +15,15 @@ export const Header = async () => {
     >
       <Image src="/logo_min.svg" alt="logo" width={25} height={25} priority />
       <div>
+        <Link className={buttonVariants({ variant: "link" })} href={"/main"}>
+          Главная
+        </Link>
+        <Link className={buttonVariants({ variant: "link" })} href={"/create"}>
+          Cоздать порфолио
+        </Link>
+        {/* <Button variant="link">Hello world</Button>
         <Button variant="link">Hello world</Button>
-        <Button variant="link">Hello world</Button>
-        <Button variant="link">Hello world</Button>
-        <Button variant="link">Hello world</Button>
+        <Button variant="link">Hello world</Button> */}
       </div>
       <div>
         {session?.user ? (

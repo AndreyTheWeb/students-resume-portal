@@ -16,6 +16,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/use-toast";
 
 const FormSchema = z.object({
   email: z
@@ -30,6 +31,7 @@ const FormSchema = z.object({
 
 const SignInForm = () => {
   const router = useRouter();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -46,7 +48,16 @@ const SignInForm = () => {
     });
 
     if (signInData?.error) {
+      toast({
+        title: "Ошибка",
+        description: "Что то пошло не так",
+        variant: "destructive",
+      });
     } else {
+      toast({
+        title: "Успех",
+        description: "Вы вошли в свой аккаунт",
+      });
       router.push("/main");
       router.refresh();
     }

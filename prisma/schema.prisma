@@ -19,16 +19,18 @@ model User {
 }
 
 model ResumeBody {
-  id     Int        @id @default(autoincrement())
-  text   String
-  links  String
-  post   ResumePost @relation(fields: [postId], references: [id])
-  postId Int
+  id      Int        @id @default(autoincrement())
+  text    String
+  links   String
+  picture String     @default("")
+  post    ResumePost @relation(fields: [postId], references: [id])
+  postId  Int
 }
 
 model ResumePost {
   id       Int          @id @default(autoincrement())
   status   String
+  name     String       @default("")
   bodyText ResumeBody[]
 }
 

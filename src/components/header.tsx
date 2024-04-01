@@ -11,7 +11,7 @@ export const Header = async () => {
 
   return (
     <header
-      className={`flex flex-row item-center items-center border-b border-[${Colors.subtext}] pb-2 w-full justify-between sticky top-0 bg-white`}
+      className={`flex flex-row item-center items-center border-b border-[${Colors.subtext}] pb-2 w-full justify-between sticky top-0 bg-white z-50`}
     >
       <Image src="/logo_min.svg" alt="logo" width={25} height={25} priority />
       <div>

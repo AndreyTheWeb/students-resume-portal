@@ -41,9 +41,6 @@ export const NewForm = () => {
   const router = useRouter();
 
   const onSubmit = async (values: z.infer<typeof PostSchema>) => {
-    console.log(selectedFile, values);
-    console.log(JSON.stringify(selectedFile));
-
     const formData = new FormData();
     formData.set("picture", selectedFile);
     formData.append("status", values.status);
@@ -71,10 +68,10 @@ export const NewForm = () => {
   };
 
   return (
-    <div className={"relative w-full"}>
+    <div className={"relative w-full pt-5"}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-          <div className="space-y-2">
+          <div className="space-y-2 flex flex-col gap-[20px]">
             <FormField
               control={form.control}
               name="status"
@@ -94,7 +91,7 @@ export const NewForm = () => {
               name="text"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Описание достижения</FormLabel>
+                  <FormLabel>Описание достижений</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="Введите описание ваших достижений"
@@ -149,11 +146,10 @@ export const NewForm = () => {
                 </FormItem>
               )}
             />
+            <Button variant="link" className="w-full mt-6" type="submit">
+              Создать портфолио
+            </Button>
           </div>
-
-          <Button variant="link" className="w-full mt-6" type="submit">
-            Создать портфолио
-          </Button>
         </form>
       </Form>
     </div>

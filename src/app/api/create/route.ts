@@ -27,13 +27,15 @@ export async function POST(req: Request) {
 
     const db = DBClient.getInstance().prisma;
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    let path1: string | undefined;
+    if (file) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
 
-    const path1 = `${path.join(process.cwd(), "/public/images")}/${file.name}`;
-
-    await writeFile(path1, buffer);
-    console.log(`open ${path1} to see the uploaded file`);
+      path1 = `${path.join(process.cwd(), "/public/images")}/${file.name}`;
+      await writeFile(path1, buffer);
+      console.log(`open ${path1} to see the uploaded file`);
+    }
 
     const resumeBody = {
       create: {

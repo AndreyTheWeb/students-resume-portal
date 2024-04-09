@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui";
 import Image from "next/image";
+import Link from "next/link";
 
 type ResumeBodyProps = {
   resumes: Array<{
@@ -23,8 +24,6 @@ type ResumeBodyProps = {
 };
 
 export const ResumeBody = ({ resumes }: ResumeBodyProps) => {
-  console.log(123);
-
   return (
     <div>
       <CardHeader>
@@ -39,11 +38,13 @@ export const ResumeBody = ({ resumes }: ResumeBodyProps) => {
         {resumes.map((resume) => (
           <Card key={resume.id}>
             <CardHeader>
-              <CardTitle>{resume.name}</CardTitle>
+              <CardTitle className="hover:underline">
+                <Link href={`${resume.id}/resume`}>{resume.name}</Link>
+              </CardTitle>
               <CardDescription>{resume.status}</CardDescription>
             </CardHeader>
             <CardContent>
-              <p>{resume.text}</p>
+              <p className="whitespace-pre-line">{resume.text}</p>
             </CardContent>
             <CardFooter>
               <a

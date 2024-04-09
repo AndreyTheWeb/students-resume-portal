@@ -65,7 +65,7 @@ const SignInForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full py-6">
         <div className="space-y-2">
           <FormField
             control={form.control}

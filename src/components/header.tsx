@@ -10,33 +10,35 @@ export const Header = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <header
-      className={`flex flex-row item-center items-center border-b border-[${Colors.subtext}] pb-2 w-full justify-between sticky top-0 bg-white z-50`}
-    >
-      <Image src="/logo_min.svg" alt="logo" width={25} height={25} priority />
-      <div>
-        <Link className={buttonVariants({ variant: "link" })} href={"/main"}>
-          Главная
-        </Link>
-        <Link className={buttonVariants({ variant: "link" })} href={"/create"}>
-          Cоздать порфолио
-        </Link>
-        {/* <Button variant="link">Hello world</Button>
-        <Button variant="link">Hello world</Button>
-        <Button variant="link">Hello world</Button> */}
-      </div>
-      <div>
-        {session?.user ? (
-          <UserAccountNav />
-        ) : (
+    <div className="w-screen border-b border-[${Colors.subtext}] py-2 flex items-center justify-center bg-slate-50 sticky top-0 z-50">
+      <header
+        className={`w-[1240px] flex flex-row item-center items-center justify-between bg-slate-50`}
+      >
+        <Image src="/logo_min.svg" alt="logo" width={25} height={25} priority />
+        <div>
+          <Link className={buttonVariants({ variant: "link" })} href={"/main"}>
+            Главная
+          </Link>
           <Link
             className={buttonVariants({ variant: "link" })}
-            href={"/sign-in"}
+            href={"/create"}
           >
-            Логин
+            Cоздать порфолио
           </Link>
-        )}
-      </div>
-    </header>
+        </div>
+        <div>
+          {session?.user ? (
+            <UserAccountNav />
+          ) : (
+            <Link
+              className={buttonVariants({ variant: "link" })}
+              href={"/sign-in"}
+            >
+              Логин
+            </Link>
+          )}
+        </div>
+      </header>
+    </div>
   );
 };

@@ -4,6 +4,7 @@ import { Colors } from "./theme/colors";
 import { Provider } from "@/components/provider";
 import { Header } from "@/components/header";
 import { Toaster } from "@/components/ui/toaster";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Resume portal",
@@ -19,11 +20,12 @@ export default function RootLayout({
       <body>
         <Provider>
           <div
-            className={`flex min-h-screen flex-col items-center justify-between  p-4 bg-[${Colors.background}]`}
+            className={`flex min-h-screen flex-col items-center justify-between  px-4 py-0 bg-[${Colors.background}]`}
           >
-            <div className="w-[1240px] h-full flex flex-col items-center justify-between">
+            <div className="w-[1240px] min-h-screen flex flex-col items-center justify-between">
               <Header />
               {children}
+              <Footer />
             </div>
           </div>
         </Provider>

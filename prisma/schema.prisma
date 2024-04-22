@@ -22,6 +22,7 @@ model ResumeBody {
   id      Int        @id @default(autoincrement())
   text    String
   links   String
+  tags    String[]   @default([])
   picture String     @default("")
   post    ResumePost @relation(fields: [postId], references: [id])
   postId  Int

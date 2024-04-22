@@ -15,6 +15,7 @@ type ResumeCardProps = {
     status: string;
     name: string;
     links?: string;
+    tags?: Array<string>;
     postId?: number;
     text?: string;
     picture?: string;

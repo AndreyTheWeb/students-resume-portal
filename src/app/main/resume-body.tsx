@@ -9,7 +9,10 @@ import {
   CardTitle,
 } from "@/components/ui";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from "next-view-transitions";
+import { cn } from "@/lib/utils";
+import { SearchBar } from "@/components/search-bar";
 
 type ResumeBodyProps = {
   resumes: Array<{
@@ -17,6 +20,7 @@ type ResumeBodyProps = {
     status: string;
     name: string;
     links?: string;
+    tags?: Array<string>;
     postId?: number;
     text?: string;
     picture?: string;
@@ -33,6 +37,8 @@ export const ResumeBody = ({ resumes }: ResumeBodyProps) => {
           портфолио студентов. Инновации, таланты и потенциал – все здесь!
         </CardDescription>
       </CardHeader>
+
+      <SearchBar />
 
       <div className="flex flex-col gap-10 ">
         {resumes.map((resume) => (
@@ -54,6 +60,20 @@ export const ResumeBody = ({ resumes }: ResumeBodyProps) => {
                 {resume.links}
               </a>
             </CardFooter>
+
+            <CardFooter>
+              <div className="flex gap-2">
+                {resume.tags!.map((tag, index) => (
+                  <span
+                    key={index}
+                    className=" border bg-blue-500 text-slate-50 inline-flex h-8 items-center text-sm px-2 rounded-md"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </CardFooter>
+
             {/* <Image
               src={resume.picture	}
               alt="logo"

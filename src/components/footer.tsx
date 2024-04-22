@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { Colors } from "../app/theme/colors";
 import { getServerSession } from "next-auth";
@@ -36,7 +35,7 @@ export const Footer = async () => {
         </div>
         <div className="flex gap-2">
           <Copyright />
-          <p>Федосеев Андрей</p>
+          <p>Федосеев Андрей, 2024</p>
         </div>
       </footer>
     </div>

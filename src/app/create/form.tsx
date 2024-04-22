@@ -22,6 +22,7 @@ const PostSchema = z.object({
   status: z.string().min(1, "Обязательное поле").max(100),
   text: z.string().min(1, "Обязательное поле"),
   links: z.string().min(1, "Обязательное поле"),
+  tags: z.string().min(1, "Обязательное поле"),
   picture: z.any(),
 });
 
@@ -35,6 +36,7 @@ export const NewForm = () => {
       status: "",
       text: "",
       links: "",
+      tags: "",
       picture: "",
     },
   });
@@ -46,6 +48,7 @@ export const NewForm = () => {
     formData.append("status", values.status);
     formData.append("text", values.text);
     formData.append("links", values.links);
+    formData.append("tags", values.tags);
     const response = await fetch("/api/create", {
       method: "POST",
       body: formData,
@@ -140,6 +143,23 @@ export const NewForm = () => {
                       type="file"
                       accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
                       placeholder="Загрузите подтверждающие материалы"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="tags"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Укажите теги для вашего портфолио</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Пожалуйста, введите теги через запятую"
                     />
                   </FormControl>
                   <FormMessage />

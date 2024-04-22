@@ -1,4 +1,5 @@
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { Colors } from "../app/theme/colors";
 import { getServerSession } from "next-auth";

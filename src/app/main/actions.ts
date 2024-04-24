@@ -31,3 +31,36 @@ export const getResumes = async (query: string) => {
     throw new Error("Failed to fetch data");
   }
 };
+
+export const deleteResume = async (id: number) => {
+  const db = DBClient.getInstance().prisma;
+
+  try {
+    const relatedResumeBodies = await db.resumeBody.findMany({
+      where: {
+        postId: id,
+      },
+    });
+
+    await Promise.all(
+      relatedResumeBodies.map(async (resumeBody) => {
+        await db.resumeBody.delete({
+          where: {
+            id: resumeBody.id,
+          },
+        });
+      })
+    );
+
+    const deletedResume = await db.resumePost.delete({
+      where: {
+        id,
+      },
+    });
+
+    return deletedResume;
+  } catch (error) {
+    console.error("Error while deleting resume:", error);
+    throw error;
+  }
+};

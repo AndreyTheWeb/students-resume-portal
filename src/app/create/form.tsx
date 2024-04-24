@@ -135,7 +135,6 @@ export const NewForm = () => {
                       onChange={({ target }) => {
                         if (target.files) {
                           const file = target.files[0];
-                          console.log(file);
                           setSelectedFile(file);
                           setSelectedImage(URL.createObjectURL(file));
                         }

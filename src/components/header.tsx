@@ -26,6 +26,12 @@ export const Header = async () => {
           >
             Cоздать порфолио
           </Link>
+          <Link
+            className={buttonVariants({ variant: "link" })}
+            href={"/dashboards"}
+          >
+            Статистика
+          </Link>
         </div>
         <div>
           {session?.user ? (

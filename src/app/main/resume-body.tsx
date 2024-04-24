@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
@@ -13,6 +14,10 @@ import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { cn } from "@/lib/utils";
 import { SearchBar } from "@/components/search-bar";
+import { Trash2 } from "lucide-react";
+import { deleteResume } from "./actions";
+import { useRouter } from "next/navigation";
+import { $Enums } from "@prisma/client";
 
 type ResumeBodyProps = {
   resumes: Array<{
@@ -25,9 +30,19 @@ type ResumeBodyProps = {
     text?: string;
     picture?: string;
   }>;
+  user: {
+    id: number;
+    email: string;
+    name: string;
+    password: string;
+    role: $Enums.Role;
+  } | null;
 };
 
-export const ResumeBody = ({ resumes }: ResumeBodyProps) => {
+export const ResumeBody = ({ resumes, user }: ResumeBodyProps) => {
+  const router = useRouter();
+  const isAdmin = user && user.role === $Enums.Role.ADMIN;
+
   return (
     <div>
       <CardHeader>
@@ -44,9 +59,22 @@ export const ResumeBody = ({ resumes }: ResumeBodyProps) => {
         {resumes.map((resume) => (
           <Card key={resume.id}>
             <CardHeader>
-              <CardTitle className="hover:underline">
-                <Link href={`${resume.id}/resume`}>{resume.name}</Link>
-              </CardTitle>
+              <div className="flex justify-between ">
+                <CardTitle className="hover:underline">
+                  <Link href={`${resume.id}/resume`}>{resume.name}</Link>
+                </CardTitle>
+                {isAdmin && (
+                  <Button
+                    variant="ghost"
+                    onClick={() => {
+                      deleteResume(resume.id);
+                      router.refresh();
+                    }}
+                  >
+                    <Trash2 />
+                  </Button>
+                )}
+              </div>
               <CardDescription>{resume.status}</CardDescription>
             </CardHeader>
             <CardContent>

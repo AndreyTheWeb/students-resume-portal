@@ -13,6 +13,10 @@ export default async function Main({
   const session = await getServerSession(authOptions);
   const db = DBClient.getInstance().prisma;
 
+  const user = await db.user.findUnique({
+    where: { email: session?.user?.user.email || "" },
+  });
+
   // const resumePost = await db.resumePost.findMany();
   const resumeBody = await db.resumeBody.findMany();
 
@@ -23,13 +27,11 @@ export default async function Main({
     ...resume,
   }));
 
-  // console.log(resumess, searchParams, "se");
-
   return (
     <div className={"relative w-full"}>
       {!session?.user && <NotAccessLabel />}
       {/* MAIN PAGE {session?.user?.name} */}
-      <ResumeBody resumes={resumes} />
+      <ResumeBody resumes={resumes} user={user} />
     </div>
   );
 }

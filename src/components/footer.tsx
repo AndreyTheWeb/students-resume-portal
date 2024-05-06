@@ -14,7 +14,6 @@ export const Footer = async () => {
       <footer
         className={`w-[1240px] flex flex-row item-center items-center justify-between bg-slate-50  pb-2`}
       >
-        <Image src="/logo_min.svg" alt="logo" width={25} height={25} priority />
         <div className="flex gap-2 items-center">
           <MessageSquare />
           <a

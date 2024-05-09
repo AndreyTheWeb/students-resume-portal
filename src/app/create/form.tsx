@@ -122,7 +122,7 @@ export const NewForm = () => {
               )}
             />
 
-            <FormField
+            {/* <FormField
               control={form.control}
               name="picture"
               render={({ field }) => (
@@ -145,7 +145,7 @@ export const NewForm = () => {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             <FormField
               control={form.control}

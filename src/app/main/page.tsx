@@ -10,7 +10,9 @@ export default async function Main({
 }: {
   searchParams: { query: string };
 }) {
-  const session = await getServerSession(authOptions);
+  const session = (await getServerSession(authOptions)) as {
+    user: { user: { email: string } };
+  };
   const db = DBClient.getInstance().prisma;
 
   const user = await db.user.findUnique({

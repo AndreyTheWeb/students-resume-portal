@@ -37,9 +37,9 @@ export const ResumeCard = ({ resumes }: ResumeCardProps) => {
             <CardDescription>{resume?.status}</CardDescription>
           </div>
 
-          {Boolean(resume.picture?.length) && (
+          {Boolean(resume?.picture?.length) && (
             <Image
-              src={`/${resume.picture.replace(/.*\/public\//, "")}`}
+              src={`/${resume?.picture?.replace(/.*\/public\//, "")}`}
               alt="logo"
               width={250}
               height={300}

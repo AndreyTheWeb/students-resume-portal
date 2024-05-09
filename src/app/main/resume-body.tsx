@@ -101,14 +101,6 @@ export const ResumeBody = ({ resumes, user }: ResumeBodyProps) => {
                 ))}
               </div>
             </CardFooter>
-
-            {/* <Image
-              src={resume.picture	}
-              alt="logo"
-              width={25}
-              height={25}
-              priority
-            /> */}
           </Card>
         ))}
       </div>

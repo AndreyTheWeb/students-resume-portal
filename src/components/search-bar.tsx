@@ -22,7 +22,7 @@ export const SearchBar = () => {
       <Input
         type="text"
         className="px-3 py-2 "
-        placeholder="Введите имя или ключевые навыки..."
+        placeholder="Введите имя или статус..."
         onChange={(e) => handleSearch(e.target.value)}
         defaultValue={searchParams.get("query")?.toString()}
       />

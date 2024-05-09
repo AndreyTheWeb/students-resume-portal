@@ -17,12 +17,12 @@ export const getResumes = async (query: string) => {
               mode: "insensitive",
             },
           },
-          // {
-          //   phone: {
-          //     contains: query,
-          //     mode: "insensitive",
-          //   },
-          // },
+          {
+            status: {
+              contains: query,
+              mode: "insensitive",
+            },
+          },
         ],
       },
     });

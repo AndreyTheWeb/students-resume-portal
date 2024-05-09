@@ -17,7 +17,6 @@ export default async function Main({
     where: { email: session?.user?.user.email || "" },
   });
 
-  // const resumePost = await db.resumePost.findMany();
   const resumeBody = await db.resumeBody.findMany();
 
   const resumePost = await getResumes(searchParams.query || "");
@@ -30,7 +29,7 @@ export default async function Main({
   return (
     <div className={"relative w-full"}>
       {!session?.user && <NotAccessLabel />}
-      {/* MAIN PAGE {session?.user?.name} */}
+
       <ResumeBody resumes={resumes} user={user} />
     </div>
   );

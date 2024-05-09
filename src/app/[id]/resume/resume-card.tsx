@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 
 type ResumeCardProps = {
   resumes: Array<{
@@ -30,9 +31,20 @@ export const ResumeCard = ({ resumes }: ResumeCardProps) => {
   return (
     <div>
       <CardHeader className="flex flew-col gap-5">
-        <div>
-          <CardTitle>{resume?.name}</CardTitle>
-          <CardDescription>{resume?.status}</CardDescription>
+        <div className="flex justify-between">
+          <div>
+            <CardTitle>{resume?.name}</CardTitle>
+            <CardDescription>{resume?.status}</CardDescription>
+          </div>
+
+          {Boolean(resume.picture?.length) && (
+            <Image
+              src={`/${resume.picture.replace(/.*\/public\//, "")}`}
+              alt="logo"
+              width={250}
+              height={300}
+            />
+          )}
         </div>
         <p className="whitespace-pre-line">{resume?.text}</p>
         <a

@@ -27,8 +27,7 @@ const PostSchema = z.object({
 });
 
 export const NewForm = () => {
-  const [selectedFile, setSelectedFile] = useState("");
-  const [selectedImage, setSelectedImage] = useState<File>();
+  const [selectedFile, setSelectedFile] = useState<File>();
 
   const form = useForm<z.infer<typeof PostSchema>>({
     resolver: zodResolver(PostSchema),
@@ -44,7 +43,7 @@ export const NewForm = () => {
 
   const onSubmit = async (values: z.infer<typeof PostSchema>) => {
     const formData = new FormData();
-    formData.set("picture", selectedFile);
+    formData.set("picture", selectedFile!);
     formData.append("status", values.status);
     formData.append("text", values.text);
     formData.append("links", values.links);
@@ -136,7 +135,6 @@ export const NewForm = () => {
                         if (target.files) {
                           const file = target.files[0];
                           setSelectedFile(file);
-                          setSelectedImage(URL.createObjectURL(file));
                         }
                       }}
                       type="file"

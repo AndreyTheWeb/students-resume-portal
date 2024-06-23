@@ -25,18 +25,19 @@ export const buildSummary = (data: resumeType) => {
 };
 
 export const buildTags = (data: resumeType) => {
-  const tags = new Set(
-    data.resumes.flatMap(
-      (resume) => resume.tags?.map((tag) => tag.trim()) || []
-    )
-  );
+  const tagCounts = data.resumes.reduce((acc, resume) => {
+    (resume.tags || []).forEach((tag) => {
+      const trimmedTag = tag.trim();
+      if (trimmedTag) {
+        acc.set(trimmedTag, (acc.get(trimmedTag) || 0) + 1);
+      }
+    });
+    return acc;
+  }, new Map());
 
-  return [
-    ...Array.from(tags).map((tag) => ({
-      name: tag,
-      total: data.resumes.filter((resume) => resume.tags?.includes(tag)).length,
-    })),
-  ];
+  const tagsArray = Array.from(tagCounts, ([name, total]) => ({ name, total }));
+
+  return tagsArray;
 };
 
 export const buildFaculties = (data: resumeType) => {

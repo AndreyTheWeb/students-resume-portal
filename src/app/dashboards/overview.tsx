@@ -22,7 +22,7 @@ export const Overview = (resumes: DashboardProps) => {
   const tagsData = buildTags(resumes);
   const faculty = buildFaculties(resumes);
 
-  console.log(faculty);
+  console.log(tagsData);
   return (
     <>
       <CardHeader>

@@ -23,12 +23,11 @@ const PostSchema = z.object({
   text: z.string().min(1, "Обязательное поле"),
   links: z.string().min(1, "Обязательное поле"),
   tags: z.string().min(1, "Обязательное поле"),
+  faculty: z.string().min(1, "Обязательное поле"),
   picture: z.any(),
 });
 
 export const NewForm = () => {
-  // const [selectedFile, setSelectedFile] = useState<File>();
-
   const form = useForm<z.infer<typeof PostSchema>>({
     resolver: zodResolver(PostSchema),
     defaultValues: {
@@ -36,6 +35,7 @@ export const NewForm = () => {
       text: "",
       links: "",
       tags: "",
+      faculty: "",
       picture: "",
     },
   });
@@ -43,11 +43,11 @@ export const NewForm = () => {
 
   const onSubmit = async (values: z.infer<typeof PostSchema>) => {
     const formData = new FormData();
-    // formData.set("picture", selectedFile!);
     formData.append("status", values.status);
     formData.append("text", values.text);
     formData.append("links", values.links);
     formData.append("tags", values.tags);
+    formData.append("faculty", values.faculty);
     const response = await fetch("/api/create", {
       method: "POST",
       body: formData,
@@ -122,30 +122,22 @@ export const NewForm = () => {
               )}
             />
 
-            {/* <FormField
+            <FormField
               control={form.control}
-              name="picture"
+              name="faculty"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Загрузите превью</FormLabel>
+                  <FormLabel>Название факультета</FormLabel>
                   <FormControl>
                     <Input
+                      placeholder="Укажите название вашего факультета"
                       {...field}
-                      onChange={({ target }) => {
-                        if (target.files) {
-                          const file = target.files[0];
-                          setSelectedFile(file);
-                        }
-                      }}
-                      type="file"
-                      accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
-                      placeholder="Загрузите подтверждающие материалы"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
-            /> */}
+            />
 
             <FormField
               control={form.control}

@@ -11,6 +11,7 @@ const PostSchema = z.object({
   text: z.string().min(1, "Обязательное поле"),
   links: z.string().min(1, "Обязательное поле"),
   tags: z.string().min(1, "Обязательное поле"),
+  faculty: z.string().min(1, "Обязательное поле"),
   picture: z.any(),
 });
 
@@ -22,8 +23,9 @@ export async function POST(req: Request) {
     const text = data.get("text");
     const links = data.get("links");
     const tags = data.get("tags");
-    // const body = await req.json();
-    const body = { status, text, links, tags };
+    const faculty = data.get("faculty");
+
+    const body = { status, text, links, tags, faculty };
     const session = await getServerSession(authOptions);
     const parsedBody = PostSchema.parse(body);
 
@@ -45,6 +47,7 @@ export async function POST(req: Request) {
         links: parsedBody.links,
         picture: path1,
         tags: parsedBody.tags ? parsedBody.tags.split(",") : [],
+        faculty: parsedBody.faculty,
       },
     };
 

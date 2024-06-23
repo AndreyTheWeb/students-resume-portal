@@ -7,13 +7,13 @@ const userSchema = z.object({
   name: z.string().min(1, "Поле Имя обязательное").max(100),
   email: z
     .string()
-    .min(1, "Заполните поле email")
-    .email("Неверный формат email"),
+    .min(1, "Заполните поле электронной почты")
+    .email("Неверный формат электронной почты"),
   password: z
     .string()
-    .min(1, "Заполните поле password")
-    .min(8, "Password должен быть не менее 8 символов"),
-  confirmPassword: z.string().min(1, "Заполните поле password"),
+    .min(1, "Заполните поле для пароля")
+    .min(8, "Пароль должен быть не менее 8 символов"),
+  confirmPassword: z.string().min(1, "Заполните поле для пароля"),
   role: z.enum(["ADMIN", "USER"]),
 });
 
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     if (existingUserByEmail) {
       return NextResponse.json(
         { user: null, message: "Пользователь уже существует" },
-        { status: 409 },
+        { status: 409 }
       );
     }
 
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       { user: rest, message: "Пользователь успешно создан" },
-      { status: 201 },
+      { status: 201 }
     );
   } catch (error) {
     return NextResponse.json({ message: `Ошибка ${error}` }, { status: 500 });

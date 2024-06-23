@@ -34,8 +34,8 @@ const FormSchema = z
     password: z
       .string()
       .min(1, "Заполните поле password")
-      .min(8, "Password должен быть не менее 8 символов"),
-    confirmPassword: z.string().min(1, "Заполните поле password"),
+      .min(8, "Пароль должен быть не менее 8 символов"),
+    confirmPassword: z.string().min(1, "Заполните поле для пароля"),
     role: z.enum(["ADMIN", "USER"]),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -108,7 +108,7 @@ const SignUpForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Электронная почта</FormLabel>
                 <FormControl>
                   <Input placeholder="mail@example.com" {...field} />
                 </FormControl>
@@ -121,7 +121,7 @@ const SignUpForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Пароль</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
@@ -138,7 +138,7 @@ const SignUpForm = () => {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Re-Enter your password</FormLabel>
+                <FormLabel>Повторите пароль</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Повторите пароль"

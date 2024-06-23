@@ -17,6 +17,7 @@ type ResumeCardProps = {
     name: string;
     links?: string;
     tags?: Array<string>;
+    faculty?: string;
     postId?: number;
     text?: string;
     picture?: string;
@@ -46,6 +47,7 @@ export const ResumeCard = ({ resumes }: ResumeCardProps) => {
             />
           )}
         </div>
+        <p className="whitespace-pre-line">{resume?.faculty}</p>
         <p className="whitespace-pre-line">{resume?.text}</p>
         <a
           className="font-medium text-blue-600 dark:text-blue-500 hover:underline"

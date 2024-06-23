@@ -1,7 +1,7 @@
 "use client";
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
-import { buildSummary, buildTags } from "./helpers";
+import { buildFaculties, buildSummary, buildTags } from "./helpers";
 import { CardDescription, CardHeader, CardTitle } from "@/components/ui";
 
 type DashboardProps = {
@@ -18,9 +18,11 @@ type DashboardProps = {
 };
 
 export const Overview = (resumes: DashboardProps) => {
-  console.log(resumes);
   const summaryData = buildSummary(resumes);
   const tagsData = buildTags(resumes);
+  const faculty = buildFaculties(resumes);
+
+  console.log(faculty);
   return (
     <>
       <CardHeader>
@@ -41,12 +43,7 @@ export const Overview = (resumes: DashboardProps) => {
             tickLine={false}
             axisLine={false}
           />
-          <Bar
-            dataKey="total"
-            fill="currentColor"
-            radius={[4, 4, 0, 0]}
-            className="fill-primary"
-          />
+          <Bar dataKey="total" fill="#3B82F6" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
 
@@ -68,12 +65,29 @@ export const Overview = (resumes: DashboardProps) => {
             tickLine={false}
             axisLine={false}
           />
-          <Bar
-            dataKey="total"
-            fill="currentColor"
-            radius={[4, 4, 0, 0]}
-            className="fill-primary"
+          <Bar dataKey="total" fill="#3B82F6" radius={[4, 4, 0, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
+
+      <CardHeader>
+        <CardTitle>Факультеты</CardTitle>
+      </CardHeader>
+      <ResponsiveContainer width="100%" height={350}>
+        <BarChart data={faculty}>
+          <XAxis
+            dataKey="name"
+            stroke="#888888"
+            fontSize={12}
+            tickLine={false}
+            axisLine={false}
           />
+          <YAxis
+            stroke="#888888"
+            fontSize={12}
+            tickLine={false}
+            axisLine={false}
+          />
+          <Bar dataKey="total" fill="#3B82F6" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </>

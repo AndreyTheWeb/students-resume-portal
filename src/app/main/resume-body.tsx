@@ -26,6 +26,7 @@ type ResumeBodyProps = {
     name: string;
     links?: string;
     tags?: Array<string>;
+    faculty?: string;
     postId?: number;
     text?: string;
     picture?: string;

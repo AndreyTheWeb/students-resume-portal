@@ -25,6 +25,7 @@ model ResumeBody {
   tags    String[]   @default([])
   picture String     @default("")
   post    ResumePost @relation(fields: [postId], references: [id])
+  faculty String     @default("")
   postId  Int
 }
 

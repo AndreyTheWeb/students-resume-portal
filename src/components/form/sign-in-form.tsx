@@ -26,8 +26,8 @@ const FormSchema = z.object({
     .email("Неверный формат email"),
   password: z
     .string()
-    .min(1, "Заполните поле password")
-    .min(8, "Password должен быть не менее 8 символов"),
+    .min(1, "Заполните поле пароль")
+    .min(8, "Пароль должен быть не менее 8 символов"),
 });
 
 const SignInForm = () => {
@@ -73,7 +73,7 @@ const SignInForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Электронная почта</FormLabel>
                 <FormControl>
                   <Input placeholder="mail@example.com" {...field} />
                 </FormControl>
@@ -86,7 +86,7 @@ const SignInForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Пароль</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
